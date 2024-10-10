@@ -1,0 +1,50 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+    <section class="contact_section layout_padding" style="padding: 40px 0;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-10 offset-md-1">
+                    <div class="form_container">
+                        <div class="heading_container">
+                            <h2>
+                                Search Book
+                            </h2>
+                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div>
+                                <input name="info" type="text" placeholder="Book Name"/>
+                            </div>
+                            <div class="d-flex ">
+                                <button>
+                                    SEND
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="service_section layout_padding">
+        <div class="container">
+            {% if error %}
+                <h5>Not Found</h5>
+            {% endif %}
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-6 col-lg-3">
+                        <div class="box" style="min-height: 300px!important; max-height: 300px!important;">
+                            <div class="detail-box">
+                                <h5>{{ book.title }}</h5>
+                                <p style="height: 180px!important;min-height: 180px!important; max-height: 180px!important;">{{ book.description }}</p>
+                                <p style="color: #5a2a8f;">{{ book.author }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
